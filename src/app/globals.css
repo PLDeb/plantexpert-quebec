@@ -1,0 +1,35 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f7f4ee;
+  --foreground: #2c2c2c;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  /* Palette botanique */
+  --color-forest: #1a3a2a;
+  --color-moss: #2d5a3d;
+  --color-sage: #4a7a5a;
+  --color-fern: #6b9e7a;
+  --color-mist: #b5c9bb;
+  --color-cream: #f7f4ee;
+  --color-sand: #ede8de;
+  --color-bark: #8b6b4a;
+  --color-charcoal: #2c2c2c;
+  --color-slate: #5a5a5a;
+  --color-accent: #c4842a;
+  --color-danger: #c0392b;
+
+  /* Typographie */
+  --font-display: var(--font-playfair);
+  --font-sans: var(--font-body);
+  --font-mono: var(--font-data);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}

@@ -1,0 +1,39 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// Un diagnostic complété par Sylvie. `data` conserve le JSON complet (voir
+// src/types/terrain.ts) ; les autres colonnes dupliquent les champs utiles pour
+// filtrer/chercher facilement depuis le tableau de bord Supabase.
+model TerrainProfile {
+  id            String   @id @default(cuid())
+  parcours      String
+  region        String?
+  zoneRusticite String?  @map("zone_rusticite")
+  superficieM2  Int?     @map("superficie_m2")
+  data          Json
+  createdAt     DateTime @default(now()) @map("created_at")
+
+  leads Lead[]
+
+  @@map("terrain_profiles")
+}
+
+// Un lead capturé via le formulaire de courriel, optionnellement lié au
+// diagnostic qui l'a produit.
+model Lead {
+  id               String          @id @default(cuid())
+  email            String
+  prenom           String?
+  parcours         String?
+  terrainProfileId String?         @map("terrain_profile_id")
+  terrainProfile   TerrainProfile? @relation(fields: [terrainProfileId], references: [id])
+  createdAt        DateTime        @default(now()) @map("created_at")
+
+  @@map("leads")
+}
