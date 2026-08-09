@@ -1,0 +1,314 @@
+[
+  {
+    "slug": "allium-schoenoprasum",
+    "colonne": "Couleur de floraison",
+    "valeur_brute": "M",
+    "probleme": "token non reconnu: 'M'"
+  },
+  {
+    "slug": "alnus-incana",
+    "colonne": "Multiplication",
+    "valeur_brute": "SAP",
+    "probleme": "combo non résolu: 'SAP'"
+  },
+  {
+    "slug": "alnus-incana-ssp-rugosa",
+    "colonne": "Multiplication",
+    "valeur_brute": "SAP",
+    "probleme": "combo non résolu: 'SAP'"
+  },
+  {
+    "slug": "alnus-viridis-ssp-crispa",
+    "colonne": "Multiplication",
+    "valeur_brute": "SAP",
+    "probleme": "combo non résolu: 'SAP'"
+  },
+  {
+    "slug": "amphicarpaea-bracteata",
+    "colonne": "Couleur de floraison",
+    "valeur_brute": "M",
+    "probleme": "token non reconnu: 'M'"
+  },
+  {
+    "slug": "amphicarpaea-bracteata",
+    "colonne": "Multiplication",
+    "valeur_brute": "SPA",
+    "probleme": "combo non résolu: 'SPA'"
+  },
+  {
+    "slug": "apios-americana",
+    "colonne": "Multiplication",
+    "valeur_brute": "SPD",
+    "probleme": "combo non résolu: 'SPD'"
+  },
+  {
+    "slug": "artemisia-frigida",
+    "colonne": "Multiplication",
+    "valeur_brute": "S, DPA",
+    "probleme": "combo non résolu: 'DPA'"
+  },
+  {
+    "slug": "artemisia-ludoviciana",
+    "colonne": "Multiplication",
+    "valeur_brute": "S, DPA",
+    "probleme": "combo non résolu: 'DPA'"
+  },
+  {
+    "slug": "artemisia-dracunculus",
+    "colonne": "Multiplication",
+    "valeur_brute": "S, DPA",
+    "probleme": "combo non résolu: 'DPA'"
+  },
+  {
+    "slug": "asarum-canadense",
+    "colonne": "Multiplication",
+    "valeur_brute": "S, DPA",
+    "probleme": "combo non résolu: 'DPA'"
+  },
+  {
+    "slug": "cornus-mas",
+    "colonne": "Où peut-on la trouver?",
+    "valeur_brute": "http://www.greenbarnnursery.ca/products/cornelian-cherry-cornus-mas",
+    "probleme": "contient du texte/URL"
+  },
+  {
+    "slug": "foeniculum-vulgare-rubrum",
+    "colonne": "Comestible",
+    "valeur_brute": "Fe, R, Gr, Ti",
+    "probleme": "token non reconnu: 'Ti'"
+  },
+  {
+    "slug": "foeniculum-vulgare-rubrum",
+    "colonne": "Couleur de floraison",
+    "valeur_brute": "V, F",
+    "probleme": "token non reconnu: 'F'"
+  },
+  {
+    "slug": "hesperis-matronalis",
+    "colonne": "Couleur de floraison",
+    "valeur_brute": "R",
+    "probleme": "token non reconnu: 'R'"
+  },
+  {
+    "slug": "mahonia-aquifolium",
+    "colonne": "Comestible",
+    "valeur_brute": "Fr(!)",
+    "probleme": "token non reconnu: 'Fr(!)'"
+  },
+  {
+    "slug": "malva-moschata",
+    "colonne": "Multiplication",
+    "valeur_brute": "SP, DAP",
+    "probleme": "combo non résolu: 'DAP'"
+  },
+  {
+    "slug": "melissa-officinalis",
+    "colonne": "Comestible",
+    "valeur_brute": "F",
+    "probleme": "token non reconnu: 'F'"
+  },
+  {
+    "slug": "mentha-canadensis",
+    "colonne": "Multiplication",
+    "valeur_brute": "SP,  DPA, BP",
+    "probleme": "combo non résolu: 'DPA'"
+  },
+  {
+    "slug": "mentha-piperita",
+    "colonne": "Multiplication",
+    "valeur_brute": "SP, DPA, BP",
+    "probleme": "combo non résolu: 'DPA'"
+  },
+  {
+    "slug": "origanum-vulgare",
+    "colonne": "Comestible",
+    "valeur_brute": "F",
+    "probleme": "token non reconnu: 'F'"
+  },
+  {
+    "slug": "phlox-paniculata",
+    "colonne": "Couleur de floraison",
+    "valeur_brute": "Rs,Rg,M,Bl,B",
+    "probleme": "token non reconnu: 'M'"
+  },
+  {
+    "slug": "prunus-americana",
+    "colonne": "Période de taille",
+    "valeur_brute": "A, D",
+    "probleme": "combo non résolu: 'D'"
+  },
+  {
+    "slug": "prunus-avium-var-montmorency",
+    "colonne": "Période de taille",
+    "valeur_brute": "A, D",
+    "probleme": "combo non résolu: 'D'"
+  },
+  {
+    "slug": "prunus-besseyi",
+    "colonne": "Période de taille",
+    "valeur_brute": "A, D",
+    "probleme": "combo non résolu: 'D'"
+  },
+  {
+    "slug": "prunus-kerrasis-var-juliet",
+    "colonne": "Période de taille",
+    "valeur_brute": "A, D",
+    "probleme": "combo non résolu: 'D'"
+  },
+  {
+    "slug": "prunus-maritima",
+    "colonne": "Période de taille",
+    "valeur_brute": "A, D",
+    "probleme": "combo non résolu: 'D'"
+  },
+  {
+    "slug": "prunus-persica",
+    "colonne": "Période de taille",
+    "valeur_brute": "A, D",
+    "probleme": "combo non résolu: 'D'"
+  },
+  {
+    "slug": "prunus-romeo",
+    "colonne": "Période de taille",
+    "valeur_brute": "A, D",
+    "probleme": "combo non résolu: 'D'"
+  },
+  {
+    "slug": "prunus-virginiana",
+    "colonne": "Période de taille",
+    "valeur_brute": "A, D",
+    "probleme": "combo non résolu: 'D'"
+  },
+  {
+    "slug": "prunus-x-hybrids",
+    "colonne": "Période de taille",
+    "valeur_brute": "A, D",
+    "probleme": "combo non résolu: 'D'"
+  },
+  {
+    "slug": "quercus-macrocarpa",
+    "colonne": "Vie sauvage",
+    "valeur_brute": "X",
+    "probleme": "code non reconnu"
+  },
+  {
+    "slug": "rhus-aromatica",
+    "colonne": "Intérêt automnale hivernal",
+    "valeur_brute": "X",
+    "probleme": "token non reconnu: 'X'"
+  },
+  {
+    "slug": "rhus-typhina",
+    "colonne": "Intérêt automnale hivernal",
+    "valeur_brute": "X",
+    "probleme": "token non reconnu: 'X'"
+  },
+  {
+    "slug": "rumex-acetosa",
+    "colonne": "Multiplication",
+    "valeur_brute": "GD",
+    "probleme": "combo non résolu: 'GD'"
+  },
+  {
+    "slug": "rumex-sanguineus",
+    "colonne": "Multiplication",
+    "valeur_brute": "GD",
+    "probleme": "combo non résolu: 'GD'"
+  },
+  {
+    "slug": "rumex-scutatus",
+    "colonne": "Multiplication",
+    "valeur_brute": "GD",
+    "probleme": "combo non résolu: 'GD'"
+  },
+  {
+    "slug": "sagittaria-latifolia",
+    "colonne": "Comestible",
+    "valeur_brute": "Tu",
+    "probleme": "token non reconnu: 'Tu'"
+  },
+  {
+    "slug": "salvia-apiana",
+    "colonne": "Intérêt automnale hivernal",
+    "valeur_brute": "X",
+    "probleme": "token non reconnu: 'X'"
+  },
+  {
+    "slug": "salvia-apiana",
+    "colonne": "Multiplication",
+    "valeur_brute": "B, DPA",
+    "probleme": "combo non résolu: 'DPA'"
+  },
+  {
+    "slug": "salvia-officinalis",
+    "colonne": "Comestible",
+    "valeur_brute": "Fl, Fe,  É",
+    "probleme": "token non reconnu: 'É'"
+  },
+  {
+    "slug": "salvia-officinalis",
+    "colonne": "Intérêt automnale hivernal",
+    "valeur_brute": "X",
+    "probleme": "token non reconnu: 'X'"
+  },
+  {
+    "slug": "salvia-officinalis",
+    "colonne": "Multiplication",
+    "valeur_brute": "B, DPA",
+    "probleme": "combo non résolu: 'DPA'"
+  },
+  {
+    "slug": "sambucus-canadensis",
+    "colonne": "Intérêt automnale hivernal",
+    "valeur_brute": "X",
+    "probleme": "token non reconnu: 'X'"
+  },
+  {
+    "slug": "sambucus-canadensis",
+    "colonne": "Multiplication",
+    "valeur_brute": "BP, DPA",
+    "probleme": "combo non résolu: 'DPA'"
+  },
+  {
+    "slug": "smilax-herbacea",
+    "colonne": "Où peut-on la trouver?",
+    "valeur_brute": "http://aiglonindigo.com/produit/471/smilax-herbace",
+    "probleme": "contient du texte/URL"
+  },
+  {
+    "slug": "sorbus-americana",
+    "colonne": "Hauteur(m)",
+    "valeur_brute": "F",
+    "probleme": "format non reconnu"
+  },
+  {
+    "slug": "symphytum-officinale",
+    "colonne": "Multiplication",
+    "valeur_brute": "D, PAÉ",
+    "probleme": "combo non résolu: 'PAÉ'"
+  },
+  {
+    "slug": "symphytum-x-uplandicum",
+    "colonne": "Multiplication",
+    "valeur_brute": "D, PAÉ",
+    "probleme": "combo non résolu: 'PAÉ'"
+  },
+  {
+    "slug": "tilia-americana",
+    "colonne": "Multiplication",
+    "valeur_brute": "M, PA",
+    "probleme": "combo non résolu: 'PA'"
+  },
+  {
+    "slug": "tilia-cordata",
+    "colonne": "Multiplication",
+    "valeur_brute": "M, PA",
+    "probleme": "combo non résolu: 'PA'"
+  },
+  {
+    "slug": "xanthoceras-sorbifolium",
+    "colonne": "Où peut-on la trouver?",
+    "valeur_brute": "http://www.arbres-fruitiers.ca/nos-arbres/permaculture/xanthoceras-xanthoceras-sorbifolium-zone-5",
+    "probleme": "contient du texte/URL"
+  }
+]

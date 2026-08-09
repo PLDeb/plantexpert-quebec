@@ -1,7 +1,7 @@
 import type { ParcoursId } from "./parcours";
 import type { TerrainProfile } from "@/types/terrain";
 import type { GuildTemplate } from "@/types/guild";
-import { plantSummaryForZone } from "./plants";
+import type { PlantSummary } from "./plants";
 import { templatesForZone } from "./guilds";
 
 const AGENT_SYSTEM_FULL = `Tu es Sylvie, conseillère en aménagement écologique pour une entreprise québécoise spécialisée en permaculture et agroforesterie en Chaudière-Appalaches.
@@ -107,14 +107,18 @@ export function buildRecommendPrompt(terrain: TerrainProfile, superficie: number
   );
 }
 
-/** Prompt pour GÉNÉRER une guilde à partir d'un modèle, adaptée au terrain. */
+/**
+ * Prompt pour GÉNÉRER une guilde à partir d'un modèle, adaptée au terrain.
+ * `plantList` doit déjà être filtrée pour la zone du client (voir
+ * plantSummaryForZoneDb / plantSummaryForZone selon le mode réel/démo).
+ */
 export function buildGuildPrompt(
   terrain: TerrainProfile,
   superficie: number,
+  plantList: PlantSummary[],
   template?: GuildTemplate | null,
 ): string {
   const clientZone = terrain?.localisation?.zone_rusticite ?? "3";
-  const plantList = plantSummaryForZone(clientZone);
 
   let templateSection = "";
   if (template) {

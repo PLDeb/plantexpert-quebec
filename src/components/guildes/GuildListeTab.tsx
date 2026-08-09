@@ -1,12 +1,15 @@
-import { plantByName, FN_COLORS } from "@/lib/plants";
+import { FN_COLORS } from "@/lib/plants";
 import type { GeneratedGuild } from "@/types/guild";
+import type { Plant } from "@/types/plant";
 
 export default function GuildListeTab({
   guild,
   superficie,
+  plantesDetails,
 }: {
   guild: GeneratedGuild;
   superficie: number;
+  plantesDetails: Record<string, Plant>;
 }) {
   return (
     <div className="flex flex-col gap-2.5">
@@ -26,7 +29,7 @@ export default function GuildListeTab({
                 idx < guild.plantes.length - 1 ? "border-b border-sand" : ""
               }`}
             >
-              <span className="text-lg">{plantByName(gp.nom)?.emoji ?? "🌿"}</span>
+              <span className="text-lg">{plantesDetails[gp.nom]?.emoji ?? "🌿"}</span>
               <div className="font-sans flex-1 text-sm text-charcoal">{gp.nom}</div>
               <div className="font-mono text-xs font-bold text-bark">x{gp.quantite}</div>
               <span
@@ -40,7 +43,7 @@ export default function GuildListeTab({
       </div>
 
       {guild.plantes.map((gp, idx) => {
-        const plant = plantByName(gp.nom);
+        const plant = plantesDetails[gp.nom];
         if (!plant) return null;
         const borderColor =
           gp.priorite === "obligatoire"

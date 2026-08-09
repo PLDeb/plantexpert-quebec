@@ -1,9 +1,9 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { plantByName } from "@/lib/plants";
 import { COLORS } from "@/lib/colors";
 import type { GeneratedGuild } from "@/types/guild";
+import type { Plant } from "@/types/plant";
 
 const DIRS: Record<string, { dx: number; dy: number }> = {
   N: { dx: 0, dy: -1 },
@@ -19,9 +19,11 @@ const DIRS: Record<string, { dx: number; dy: number }> = {
 export default function GuildCanvas({
   guild,
   superficie = 500,
+  plantesDetails,
 }: {
   guild: GeneratedGuild | null;
   superficie?: number;
+  plantesDetails: Record<string, Plant>;
 }) {
   const ref = useRef<HTMLCanvasElement>(null);
 
@@ -74,7 +76,7 @@ export default function GuildCanvas({
     const cy = H / 2;
 
     guild.plantes.forEach((gp, pi) => {
-      const plant = plantByName(gp.nom);
+      const plant = plantesDetails[gp.nom];
       if (!plant) return;
 
       let dir = DIRS[gp.orientation || plant.orientation_preferee];
@@ -133,7 +135,7 @@ export default function GuildCanvas({
     ctx.textAlign = "center";
     ctx.textBaseline = "top";
     ctx.fillText("centre", cx, cy + 7);
-  }, [guild, superficie]);
+  }, [guild, superficie, plantesDetails]);
 
   return (
     <canvas

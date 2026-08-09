@@ -37,3 +37,106 @@ model Lead {
 
   @@map("leads")
 }
+
+// ─── Catalogue de plantes (source : sheet "Liste de Plantes Vivaces utiles
+// en Permaculture pour le Québec") ──────────────────────────────────────
+// Cette table reflète fidèlement les données horticoles de la source.
+// Les champs propres à l'app (rôle de guilde, strate, prix, emoji, couleur,
+// orientation) n'y sont PAS stockés : ils sont déduits en TypeScript à la
+// volée (voir src/db/plants.ts) pour rester faciles à corriger sans
+// réimporter les données.
+//
+// Convention pour les champs codés du sheet :
+//   NULL         = non renseigné / inconnu ("?" dans le sheet)
+//   tableau vide = non applicable ("*" dans le sheet)
+model Plante {
+  id     BigInt @id @default(autoincrement())
+  slug   String @unique
+
+  // Taxonomie
+  genre       String
+  espece      String?
+  variete     String?
+  nomFrancais String? @map("nom_francais")
+  nomAnglais  String? @map("nom_anglais")
+
+  // Tolérances / besoins
+  zoneRusticite String?  @map("zone_rusticite")
+  lumiere       String[] @default([]) // 'plein soleil' | 'mi-ombre' | 'ombre'
+  eau           String[] @default([]) // 'peu' | 'moyen' | 'beaucoup'
+  phMin         Decimal? @map("ph_min") @db.Decimal(3, 1)
+  phMax         Decimal? @map("ph_max") @db.Decimal(3, 1)
+  textureSol    String[] @default([]) @map("texture_sol") // 'léger'|'moyen'|'lourd'|'aquatique'
+
+  // Architecture
+  forme       String? // 'arbre' | 'arbuste' | 'herbacée' | 'grimpante' | 'herbacée grimpante'
+  racine      String[] @default([])
+  hauteurMinM Decimal? @map("hauteur_min_m") @db.Decimal(5, 2)
+  hauteurMaxM Decimal? @map("hauteur_max_m") @db.Decimal(5, 2)
+  largeurMinM Decimal? @map("largeur_min_m") @db.Decimal(5, 2)
+  largeurMaxM Decimal? @map("largeur_max_m") @db.Decimal(5, 2)
+
+  // Fonctions écologiques
+  fixateurAzote          Boolean? @map("fixateur_azote")
+  accumulateurNutriments Boolean? @map("accumulateur_nutriments")
+  vieSauvage             String[] @default([]) @map("vie_sauvage") // 'nourriture' | 'abri'
+  pollinisateurs         String[] @default([]) // 'spécialistes' | 'généralistes' | 'vent'
+  couvreSol              Boolean? @map("couvre_sol")
+  haie                   Boolean?
+  utilisationEcologique  String[] @default([]) @map("utilisation_ecologique")
+
+  // Usages
+  comestible String[] @default([])
+  medicinal  Boolean?
+
+  // Ornemental
+  periodeFloraison    String[] @default([]) @map("periode_floraison")
+  couleurFloraison    String[] @default([]) @map("couleur_floraison")
+  couleurFeuillage    String[] @default([]) @map("couleur_feuillage")
+  interetAutomneHiver String[] @default([]) @map("interet_automne_hiver")
+
+  // Horticulture
+  rythmeCroissance String?  @map("rythme_croissance")
+  periodeTaille    String[] @default([]) @map("periode_taille")
+  multiplication   String[] @default([])
+  inconvenients    String[] @default([])
+
+  // Extra
+  notes                 String?
+  cultivarsRecommandes  String? @map("cultivars_recommandes")
+  lienInfo              String? @map("lien_info")
+
+  // Métadonnées / traçabilité
+  sourceSheet   String?  @map("source_sheet")
+  donneesBrutes Json?    @map("donnees_brutes")
+  verifie       Boolean  @default(false)
+  createdAt     DateTime @default(now()) @map("created_at")
+  updatedAt     DateTime @updatedAt @map("updated_at")
+
+  pepinieres PlantePepiniere[]
+
+  @@index([zoneRusticite])
+  @@index([forme])
+  @@map("plantes")
+}
+
+model Pepiniere {
+  id   Int     @id
+  nom  String
+  url  String?
+
+  plantes PlantePepiniere[]
+
+  @@map("pepinieres")
+}
+
+model PlantePepiniere {
+  planteId    BigInt @map("plante_id")
+  pepiniereId Int    @map("pepiniere_id")
+
+  plante    Plante    @relation(fields: [planteId], references: [id], onDelete: Cascade)
+  pepiniere Pepiniere @relation(fields: [pepiniereId], references: [id], onDelete: Cascade)
+
+  @@id([planteId, pepiniereId])
+  @@map("plantes_pepinieres")
+}

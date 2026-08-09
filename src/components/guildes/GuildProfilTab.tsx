@@ -1,7 +1,14 @@
-import { STRATES, plantByName } from "@/lib/plants";
+import { STRATES } from "@/lib/plants";
 import type { GeneratedGuild } from "@/types/guild";
+import type { Plant } from "@/types/plant";
 
-export default function GuildProfilTab({ guild }: { guild: GeneratedGuild }) {
+export default function GuildProfilTab({
+  guild,
+  plantesDetails,
+}: {
+  guild: GeneratedGuild;
+  plantesDetails: Record<string, Plant>;
+}) {
   return (
     <div className="flex flex-col gap-3">
       <div className="rounded-xl bg-white p-3.5">
@@ -9,7 +16,7 @@ export default function GuildProfilTab({ guild }: { guild: GeneratedGuild }) {
           Profil · coupe transversale
         </div>
         {STRATES.map((strate, si) => {
-          const inStrate = guild.plantes.filter((gp) => plantByName(gp.nom)?.strate === strate.id);
+          const inStrate = guild.plantes.filter((gp) => plantesDetails[gp.nom]?.strate === strate.id);
           return (
             <div
               key={strate.id}
@@ -32,7 +39,7 @@ export default function GuildProfilTab({ guild }: { guild: GeneratedGuild }) {
                 <span className="font-mono min-w-[90px] text-[9px] text-slate">{strate.label}</span>
                 <div className="flex flex-wrap gap-1">
                   {inStrate.map((gp) => {
-                    const pl = plantByName(gp.nom);
+                    const pl = plantesDetails[gp.nom];
                     return pl ? (
                       <span key={gp.nom} title={gp.nom} className="text-sm">
                         {pl.emoji}

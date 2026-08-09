@@ -1,17 +1,19 @@
 import GuildCanvas from "./GuildCanvas";
-import { plantByName } from "@/lib/plants";
 import type { GeneratedGuild } from "@/types/guild";
+import type { Plant } from "@/types/plant";
 
 export default function GuildPlanTab({
   guild,
   superficie,
+  plantesDetails,
 }: {
   guild: GeneratedGuild;
   superficie: number;
+  plantesDetails: Record<string, Plant>;
 }) {
   return (
     <div className="flex flex-col gap-3">
-      <GuildCanvas guild={guild} superficie={superficie} />
+      <GuildCanvas guild={guild} superficie={superficie} plantesDetails={plantesDetails} />
 
       <div className="rounded-xl bg-white p-3">
         <div className="font-mono mb-1 text-[10px] text-slate">LOGIQUE SPATIALE</div>
@@ -22,7 +24,7 @@ export default function GuildPlanTab({
         <div className="font-mono mb-2 text-[10px] text-slate">LÉGENDE</div>
         <div className="flex flex-wrap gap-1.5">
           {guild.plantes.map((gp) => {
-            const plant = plantByName(gp.nom);
+            const plant = plantesDetails[gp.nom];
             if (!plant) return null;
             return (
               <div key={gp.nom} className="flex items-center gap-1.5 rounded-md bg-cream px-2 py-1">

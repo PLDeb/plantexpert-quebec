@@ -1,17 +1,20 @@
 import { estimateCosts } from "@/lib/costs";
 import { PARCOURS, type ParcoursId } from "@/lib/parcours";
 import type { GeneratedGuild } from "@/types/guild";
+import type { Plant } from "@/types/plant";
 
 export default function GuildRapportTab({
   guild,
   superficie,
   parcoursId,
+  plantesDetails,
 }: {
   guild: GeneratedGuild;
   superficie: number;
   parcoursId: ParcoursId;
+  plantesDetails: Record<string, Plant>;
 }) {
-  const costs = estimateCosts(guild, superficie);
+  const costs = estimateCosts(guild, superficie, plantesDetails);
   const parcours = PARCOURS[parcoursId];
   const lines: [string, number][] = [
     [`Végétaux (${guild.plantes.length} espèces)`, costs.plantes],

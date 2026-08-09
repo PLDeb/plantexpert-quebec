@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import type { TerrainProfile } from "@/types/terrain";
 import type { GeneratedGuild, GuildTemplate } from "@/types/guild";
 import type { ParcoursId } from "@/lib/parcours";
+import type { Plant } from "@/types/plant";
 import GuildPlanTab from "./GuildPlanTab";
 import GuildProfilTab from "./GuildProfilTab";
 import GuildListeTab from "./GuildListeTab";
@@ -11,11 +12,17 @@ import GuildRapportTab from "./GuildRapportTab";
 
 type TabId = "plan" | "profil" | "liste" | "rapport";
 
+interface FetchGuildResult {
+  guild: GeneratedGuild;
+  plantesDetails: Record<string, Plant>;
+  demo: boolean;
+}
+
 async function fetchGuild(
   terrain: TerrainProfile,
   superficie: number,
   templateId?: string,
-): Promise<{ guild: GeneratedGuild; demo: boolean }> {
+): Promise<FetchGuildResult> {
   const res = await fetch("/api/guilde/generate", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -25,7 +32,11 @@ async function fetchGuild(
   if (!res.ok) {
     throw new Error(data.error || `Erreur HTTP ${res.status}`);
   }
-  return { guild: data.guild as GeneratedGuild, demo: Boolean(data.demo) };
+  return {
+    guild: data.guild as GeneratedGuild,
+    plantesDetails: (data.plantesDetails as Record<string, Plant>) ?? {},
+    demo: Boolean(data.demo),
+  };
 }
 
 export default function GuildView({
@@ -42,6 +53,7 @@ export default function GuildView({
   onBack?: () => void;
 }) {
   const [guild, setGuild] = useState<GeneratedGuild | null>(null);
+  const [plantesDetails, setPlantesDetails] = useState<Record<string, Plant>>({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [isDemo, setIsDemo] = useState(false);
@@ -53,9 +65,10 @@ export default function GuildView({
     let cancelled = false;
 
     fetchGuild(terrain, superficie, template?.id)
-      .then(({ guild: g, demo }) => {
+      .then(({ guild: g, plantesDetails: pd, demo }) => {
         if (cancelled) return;
         setGuild(g);
+        setPlantesDetails(pd);
         setIsDemo(demo);
       })
       .catch((err: unknown) => {
@@ -172,11 +185,20 @@ export default function GuildView({
       </div>
 
       <div className="flex-1 px-3.5 py-3.5 pb-10">
-        {tab === "plan" && <GuildPlanTab guild={guild} superficie={superficie} />}
-        {tab === "profil" && <GuildProfilTab guild={guild} />}
-        {tab === "liste" && <GuildListeTab guild={guild} superficie={superficie} />}
+        {tab === "plan" && (
+          <GuildPlanTab guild={guild} superficie={superficie} plantesDetails={plantesDetails} />
+        )}
+        {tab === "profil" && <GuildProfilTab guild={guild} plantesDetails={plantesDetails} />}
+        {tab === "liste" && (
+          <GuildListeTab guild={guild} superficie={superficie} plantesDetails={plantesDetails} />
+        )}
         {tab === "rapport" && (
-          <GuildRapportTab guild={guild} superficie={superficie} parcoursId={parcoursId} />
+          <GuildRapportTab
+            guild={guild}
+            superficie={superficie}
+            parcoursId={parcoursId}
+            plantesDetails={plantesDetails}
+          />
         )}
       </div>
     </div>
