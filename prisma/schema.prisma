@@ -113,7 +113,9 @@ model Plante {
   createdAt     DateTime @default(now()) @map("created_at")
   updatedAt     DateTime @updatedAt @map("updated_at")
 
-  pepinieres PlantePepiniere[]
+  pepinieres            PlantePepiniere[]
+  compagnonnagesCommeA  Compagnonnage[]   @relation("CompagnonnageA")
+  compagnonnagesCommeB  Compagnonnage[]   @relation("CompagnonnageB")
 
   @@index([zoneRusticite])
   @@index([forme])
@@ -139,4 +141,27 @@ model PlantePepiniere {
 
   @@id([planteId, pepiniereId])
   @@map("plantes_pepinieres")
+}
+
+// Relations connues entre espèces (bénéfique/antagoniste/neutre). Complète le
+// scoring heuristique (racine, fixateur_azote) pour les cas qu'aucun champ
+// structuré ne peut déduire (toxicité, allélopathie). L'absence d'entrée ici
+// ne veut PAS dire "compatible garanti", juste "rien de connu contre".
+model Compagnonnage {
+  id        BigInt   @id @default(autoincrement())
+  planteAId BigInt   @map("plante_a_id")
+  planteBId BigInt   @map("plante_b_id")
+  relation  String // 'benefique' | 'antagoniste' | 'neutre'
+  raison    String?
+  source    String?
+  confiance String   @default("a_verifier") // 'etabli' | 'observation' | 'a_verifier'
+  createdAt DateTime @default(now()) @map("created_at")
+
+  planteA Plante @relation("CompagnonnageA", fields: [planteAId], references: [id], onDelete: Cascade)
+  planteB Plante @relation("CompagnonnageB", fields: [planteBId], references: [id], onDelete: Cascade)
+
+  @@unique([planteAId, planteBId])
+  @@index([planteAId])
+  @@index([planteBId])
+  @@map("compagnonnage")
 }
