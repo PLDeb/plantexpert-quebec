@@ -106,6 +106,14 @@ model Plante {
   cultivarsRecommandes  String? @map("cultivars_recommandes")
   lienInfo              String? @map("lien_info")
 
+  // Enrichissement narratif (rédaction libre, progressif espèce par espèce —
+  // absent du sheet structuré, complète les attributs codés). Tous nullable :
+  // rien ne casse tant qu'une espèce n'est pas encore enrichie.
+  ecologieNotes             String?  @map("ecologie_notes")
+  integrationDesignNotes    String?  @map("integration_design_notes")
+  espacementRecommandeM     Decimal? @map("espacement_recommande_m") @db.Decimal(4, 1)
+  orientationPreferee       String?  @map("orientation_preferee")
+
   // Métadonnées / traçabilité
   sourceSheet   String?  @map("source_sheet")
   donneesBrutes Json?    @map("donnees_brutes")
