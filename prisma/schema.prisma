@@ -60,6 +60,14 @@ model Plante {
   nomFrancais String? @map("nom_francais")
   nomAnglais  String? @map("nom_anglais")
 
+  // Statut indigène (Québec). NULL = pas encore vérifié — surtout PAS
+  // considéré comme "false" par défaut ; voir enrichPlante() dans
+  // src/db/plants.ts pour la règle de repli. Peuplé via scripts/enrich-indigene-vascan.mts
+  // (API VASCAN/Canadensys, CC-BY-SA) — indigeneSource garde la trace exacte
+  // pour audit (taxonID VASCAN + date de vérification).
+  indigene       Boolean?
+  indigeneSource String?  @map("indigene_source")
+
   // Tolérances / besoins
   zoneRusticite String?  @map("zone_rusticite")
   lumiere       String[] @default([]) // 'plein soleil' | 'mi-ombre' | 'ombre'
@@ -127,6 +135,21 @@ model Plante {
 
   @@index([zoneRusticite])
   @@index([forme])
+  // Index GIN/trgm pour les filtres facettés et la recherche floue — noms
+  // "map" alignés sur ceux déjà créés en SQL brut lors de l'import initial,
+  // pour que Prisma les reconnaisse comme déjà satisfaits (voir l'incident
+  // du 2026-08-21 : sans ça, chaque migration essaie de les DROP puisqu'ils
+  // n'étaient pas représentés ici).
+  @@index([lumiere], type: Gin, map: "idx_plantes_lumiere")
+  @@index([eau], type: Gin, map: "idx_plantes_eau")
+  @@index([textureSol], type: Gin, map: "idx_plantes_texture")
+  @@index([comestible], type: Gin, map: "idx_plantes_comestible")
+  @@index([vieSauvage], type: Gin, map: "idx_plantes_vie_sauvage")
+  @@index([inconvenients], type: Gin, map: "idx_plantes_inconv")
+  @@index([phMin, phMax], map: "idx_plantes_ph")
+  @@index([nomFrancais(ops: raw("gin_trgm_ops"))], type: Gin, map: "idx_plantes_nom_fr_trgm")
+  @@index([nomAnglais(ops: raw("gin_trgm_ops"))], type: Gin, map: "idx_plantes_nom_en_trgm")
+  @@index([genre(ops: raw("gin_trgm_ops"))], type: Gin, map: "idx_plantes_genre_trgm")
   @@map("plantes")
 }
 

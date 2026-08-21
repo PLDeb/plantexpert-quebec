@@ -171,7 +171,7 @@ export function enrichPlante(p: PlanteRow): Plant {
     emoji: EMOJI_PAR_FORME[forme],
     zoneMin: zoneToNumber(zone),
     zone,
-    indigene: false,
+    indigene: p.indigene ?? false,
     forme,
     hauteur: [hauteurMin, hauteurMax],
     espacement: largeurMax ?? hauteurMax,
